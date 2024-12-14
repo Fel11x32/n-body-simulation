@@ -5,14 +5,14 @@ canvas.height = window.innerHeight;
 
 const G = 1; // Гравитационная постоянная
 const bodies = [];
-const numBodies = 5;
+const numBodies = 20;
 
 class Body {
 	constructor(x, y, mass, vx = 0, vy = 0) {
 		this.x = x;
 		this.y = y;
 		this.mass = mass;
-		this.radius = Math.max(3, Math.cbrt(this.mass) * 3); // Радиус зависит от массы
+		this.radius = Math.max(2, Math.cbrt(this.mass)); // Радиус зависит от массы
 		this.vx = vx;
 		this.vy = vy;
 		this.ax = 0;
