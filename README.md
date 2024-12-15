@@ -18,7 +18,7 @@ This project is a visualization of an N-body gravitational simulation. It demons
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/n-body-simulation.git
+   git clone https://github.com/Fel11x32/n-body-simulation.git
    ```
 
 2. Navigate to the project directory:

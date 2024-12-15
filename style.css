@@ -1,9 +1,21 @@
 body {
+	background: #000;
+
 	overflow-x: hidden;
 	overflow-y: hidden;
 
 	margin: 0;
 	padding: 0;
+}
+
+.slider {
+	position: fixed;
+	top: 10px;
+	left: 10px;
+	color: white;
+
+	display: flex;
+	gap: 10px;
 }
 
 canvas {
