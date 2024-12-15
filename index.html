@@ -7,11 +7,15 @@
 	<script src="script.js" defer></script>
 </head>
 <body>
-	<div class="slider">
-		<label for="mass-slider">Central Mass:</label>
-		<input id="mass-slider" type="range" min="5000" max="30000" value="5000" step="200">
-		<span id="mass-value">5000</span>
+	<div class="wrapper">
+		<div class="slider">
+			<label for="mass-slider">Central Mass:</label>
+			<input id="mass-slider" type="range" min="5000" max="30000" value="5000" step="200">
+			<span id="mass-value">5000</span>
+		</div>
+		<button id="toggle-fix">Fix Center: ON</button>
 	</div>
+
 	<canvas id="simulation"></canvas>
 </body>
 </html>

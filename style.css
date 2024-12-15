@@ -8,14 +8,18 @@ body {
 	padding: 0;
 }
 
-.slider {
+.wrapper {
 	position: fixed;
 	top: 10px;
 	left: 10px;
+}
+.slider {
 	color: white;
-
 	display: flex;
 	gap: 10px;
+}
+button {
+	margin-top: 10px;
 }
 
 canvas {

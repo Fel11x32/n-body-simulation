@@ -1,6 +1,7 @@
 const canvas = document.getElementById('simulation');
 const massSlider = document.getElementById('mass-slider');
 const massValue = document.getElementById('mass-value');
+const toggleFixButton = document.getElementById('toggle-fix');
 
 const ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth;
@@ -8,14 +9,16 @@ canvas.height = window.innerHeight;
 
 const G = 1; // Гравитационная постоянная
 const bodies = [];
-const numBodies = 20;
+const numBodies = 50;
+
+let centerFixed = true;
 
 class Body {
 	constructor(x, y, mass, vx = 0, vy = 0) {
 		this.x = x;
 		this.y = y;
 		this.mass = mass;
-		this.radius = Math.max(2, Math.cbrt(this.mass)); // Радиус зависит от массы
+		this.radius = Math.max(2, Math.cbrt(this.mass) * 2); // Радиус зависит от массы
 		this.vx = vx;
 		this.vy = vy;
 		this.ax = 0;
@@ -61,8 +64,9 @@ class Body {
 	}
 }
 
+
 // Центральный массивный объект
-const centerBody = new Body(canvas.width / 2, canvas.height / 2, 10000);
+const centerBody = new Body(canvas.width / 2, canvas.height / 2, 5000);
 bodies.push(centerBody);
 
 // Создаем вращающиеся тела
@@ -85,6 +89,16 @@ for (let i = 0; i < numBodies; i++) {
 function computeForces() {
 	for (let i = 0; i < bodies.length; i++) {
 		const b1 = bodies[i];
+
+		// Обнуление ускорений для звезды
+		if (centerFixed && b1 === centerBody) {
+			b1.ax = 0;
+			b1.ay = 0;
+			b1.vx = 0;
+			b1.vy = 0;
+			continue;
+		}
+
 		b1.ax = 0;
 		b1.ay = 0;
 
@@ -102,11 +116,16 @@ function computeForces() {
 	}
 }
 
+toggleFixButton.addEventListener('click', () => {
+	centerFixed = !centerFixed;
+	toggleFixButton.textContent = `Fix Center: ${centerFixed ? 'ON' : 'OFF'}`;
+});
+
 // Обновляем массу звезды
 massSlider.addEventListener('input', () => {
 	const newMass = parseInt(massSlider.value, 10);
 	centerBody.mass = newMass;
-	centerBody.radius = Math.max(2, Math.cbrt(newMass));
+	centerBody.radius = Math.max(2, Math.cbrt(newMass) * 2);
 	massValue.textContent = newMass;
 })
 
